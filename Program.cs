@@ -11,19 +11,20 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            Queue<string> patients = new Queue<string>();
+            Stack<int> numbers = new Stack<int>();
 
-            patients.Enqueue("Василий");
-            patients.Enqueue("Алексей");
-            patients.Enqueue("Роман");
-            patients.Enqueue("Владимир");
 
-            Console.WriteLine("Сейчас на прием идет: " + patients.Dequeue());//ВЫводит из очереди и удаляет элемент
-            Console.WriteLine("Следующий в очереди: " + patients.Peek()); //Выводит последний элемент
+            numbers.Push(1);
+            numbers.Push(2);
+            numbers.Push(3);
+            numbers.Push(4);
+            numbers.Push(5);
 
-            foreach (var patien in patients) 
-            { 
-                Console.WriteLine(patien);
+            Console.WriteLine(numbers.Peek());
+
+            while (numbers.Count > 0)
+            {
+                Console.WriteLine("Следующие число в стеке: " + numbers.Pop());
             }
         }
     }
