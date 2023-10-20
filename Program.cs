@@ -11,18 +11,20 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            Dictionary<string, string> countriesCapitals = new Dictionary<string, string>();
+            Car ferarri = new Car();
+            ferarri.Name = "F40";
+            ferarri.HorsePower = 471;
+            ferarri.Age = 30;
+            ferarri.MaxSpeed = 317.0f;
 
-            countriesCapitals.Add("Австралия", "Канберра");
-            countriesCapitals.Add("Турция", "Анкара");
-            countriesCapitals.Add("Швейцария", "Берн");
+        }
 
-            Console.WriteLine(countriesCapitals["Австралия"]);
-
-            foreach (var item in countriesCapitals)
-            {
-                Console.WriteLine($"Страна - {item.Key} столица {item.Value}"); ;
-            }
+        class Car 
+        { 
+            public string Name;
+            public int HorsePower;
+            public int Age;
+            public float MaxSpeed;
         }
     }
 
