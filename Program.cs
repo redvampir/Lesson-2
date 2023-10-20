@@ -11,20 +11,17 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            Stack<int> numbers = new Stack<int>();
+            Dictionary<string, string> countriesCapitals = new Dictionary<string, string>();
 
+            countriesCapitals.Add("Австралия", "Канберра");
+            countriesCapitals.Add("Турция", "Анкара");
+            countriesCapitals.Add("Швейцария", "Берн");
 
-            numbers.Push(1);
-            numbers.Push(2);
-            numbers.Push(3);
-            numbers.Push(4);
-            numbers.Push(5);
+            Console.WriteLine(countriesCapitals["Австралия"]);
 
-            Console.WriteLine(numbers.Peek());
-
-            while (numbers.Count > 0)
+            foreach (var item in countriesCapitals)
             {
-                Console.WriteLine("Следующие число в стеке: " + numbers.Pop());
+                Console.WriteLine($"Страна - {item.Key} столица {item.Value}"); ;
             }
         }
     }
