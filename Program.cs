@@ -25,7 +25,7 @@ namespace Lesson2
 
             numbers.Remove(5); // удаление по совподению.
 
-            numbers.Insert(1, 123);
+            numbers.Insert(1, 123); // добавить один элемент
 
             Console.WriteLine("Число 22 находится на позиции: " + numbers.IndexOf(22)); 
 
