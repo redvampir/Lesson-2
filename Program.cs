@@ -11,30 +11,19 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            List<int> numbers = new List<int>();
+            Queue<string> patients = new Queue<string>();
 
-            numbers.Add(12);
-            numbers.Add(5);
-            numbers.Add(8);
-            numbers.Add(14);
-            numbers.Add(22);
+            patients.Enqueue("Василий");
+            patients.Enqueue("Алексей");
+            patients.Enqueue("Роман");
+            patients.Enqueue("Владимир");
 
-            numbers.AddRange(new int[] { 3, 4, 5, 6 });
+            Console.WriteLine("Сейчас на прием идет: " + patients.Dequeue());//ВЫводит из очереди и удаляет элемент
+            Console.WriteLine("Следующий в очереди: " + patients.Peek()); //Выводит последний элемент
 
-            numbers.RemoveAt(3); // удаление одного значения.
-
-            numbers.Remove(5); // удаление по совподению.
-
-            numbers.Insert(1, 123); // добавить один элемент
-
-            Console.WriteLine("Число 22 находится на позиции: " + numbers.IndexOf(22)); 
-
-           /* numbers.Clear(); //очистить лист*/
-
-
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                Console.WriteLine(numbers[i]);
+            foreach (var patien in patients) 
+            { 
+                Console.WriteLine(patien);
             }
         }
     }
