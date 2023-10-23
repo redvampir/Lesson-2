@@ -11,66 +11,37 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-           Knight warrior1 = new Knight(100, 10);
-           Barbarian warrior2 = new Barbarian(100, 1, 7, 2);
+           Renderer renderer = new Renderer();
+            Player player = new Player(55,10);
 
-            warrior1.TakeDamage(500);
-            warrior2.TakeDamage(250);
-
-            Console.Write("Рыцарь: ");
-            warrior1.ShowInfo();
-
-            Console.Write("Варвар: ");
-            warrior2.ShowInfo();
+            renderer.Draw(player.X,player.Y);
         }
     }
 
-    class Warrior
+    class Renderer
     {
-        protected int Health;
-        protected int Armor;
-        protected int Damage;
-
-        public Warrior(int haelth, int armor, int damage) 
+        public void Draw(int x, int y, char character = '@')
         {
-            Health = haelth;
-            Armor = armor;
-            Damage = damage;
-        }
-
-        public void TakeDamage(int damage)
-        {
-            Health -= damage - Armor;
-        }
-
-        public void ShowInfo()
-        {
-            Console.WriteLine(Health);
-        }
-
-    }
-    class Knight: Warrior
-    {
-        public Knight(int health, int damage) : base(health, 5, damage) { } 
-        public void Pray()
-        {
-            Armor += 2;
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(x, y);
+            Console.Write(character);
+            Console.ReadKey(true);
         }
     }
 
-    class Barbarian: Warrior
+   class Player
     {
-        public int AttackSpeed;
-        
-        public Barbarian(int health, int armor, int damage, int attackSpeed) : base(health, armor, damage*attackSpeed)
+        private int _x;
+        private int _y;
+
+        public int X { get; private set; }
+
+        public int Y { get; private set; }
+
+        public Player(int x, int y)
         {
-            AttackSpeed = attackSpeed;
-        }
-        public void Shout()
-        { 
-            Armor -= 2;
-            Health += 10;
-        
+            X = x;
+            Y = y;
         }
     }
 
