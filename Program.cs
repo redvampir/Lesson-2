@@ -12,10 +12,7 @@ namespace Lesson2
         static void Main(string[] args)
         {
             Car ferarri = new Car();
-            ferarri.Name = "F40";
-            ferarri.HorsePower = 471;
-            ferarri.Age = 30;
-            ferarri.MaxSpeed = 317;
+            
 
             ferarri.ShowTrchicalPasport();
         }
@@ -27,6 +24,22 @@ namespace Lesson2
             public int Age;
             public float MaxSpeed;
             public int Years = 4;
+
+            public Car(string name, int horsePower, int age, float maxSpeed ) 
+            { 
+                Name = name;
+                HorsePower = horsePower;
+                Age = age;
+                MaxSpeed = maxSpeed;
+            }
+
+            public Car() 
+            {
+                Name = "Ford";
+                HorsePower = 500;
+                Age = 1;
+                MaxSpeed = 300;
+            }
 
             public void ShowTrchicalPasport()
             {
