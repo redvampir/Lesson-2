@@ -11,46 +11,68 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            Car ferarri = new Car();
+            bool isOpen = true;
             
+            Table[] tables = { new Table(1, 4), new Table(2, 8), new Table(3, 10) };
+            
+            while (isOpen)
+            {
+                Console.WriteLine("Администрирование кафе.\n");
 
-            ferarri.ShowTrchicalPasport();
+               for (int i = 0; i < tables.Length; i++)
+                {
+                    tables[i].ShowInfo();
+                }
+
+               Console.Write("\nВведите номер стола: ");
+                int wishTable = Convert.ToInt32(Console.ReadLine()) - 1;
+                Console.Write("\nВведите количество мест для брони: ");
+                int desiredPlaces = Convert.ToInt32(Console.ReadLine());
+
+                bool isReservationComleted = tables[wishTable].Reserve(desiredPlaces);
+                if (isReservationComleted)
+                {
+                    Console.WriteLine("Бронь прошла успешно!");
+                }
+                else
+                {
+                    Console.WriteLine("Бронь не прошла. Недостаточно мест.");
+                }
+
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
 
-        class Car 
-        { 
-            public string Name;
-            public int HorsePower;
-            public int Age;
-            public float MaxSpeed;
-            public int Years = 4;
+        class Table
+        {
+            public int Number;
+            public int MaxPlaces;
+            public int FreePlaces;
 
-            public Car(string name, int horsePower, int age, float maxSpeed ) 
-            { 
-                Name = name;
-                HorsePower = horsePower;
-                Age = age;
-                MaxSpeed = maxSpeed;
+            public Table(int number, int maxPlaces) 
+            {
+                Number = number;
+                MaxPlaces = maxPlaces;
+                FreePlaces = maxPlaces;
             }
 
-            public Car() 
+            public void ShowInfo()
             {
-                Name = "Ford";
-                HorsePower = 500;
-                Age = 1;
-                MaxSpeed = 300;
+                Console.WriteLine($"Стол: {Number}. Свободных мест: {FreePlaces} из {MaxPlaces}.");
             }
 
-            public void ShowTrchicalPasport()
+            public bool Reserve(int places)
             {
-                Console.WriteLine($"Название авто: {Name}\nКоличество лошадиных сил: {HorsePower}\n" +
-                                  $"Возраст авто: {Age}\nМаксимальная скорость: {MaxSpeed}");
-            }
-
-            public void BecomeOlder(int Years, int runAwayHorses)
-            {
-                Age += this.Years + Years;
-                HorsePower -= runAwayHorses;
+                if (FreePlaces >= places) 
+                { 
+                    FreePlaces -= places;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }
