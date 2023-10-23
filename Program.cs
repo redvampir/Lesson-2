@@ -11,59 +11,67 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            Performer worker1 = new Performer("Вемиамин");
-            Performer worker2 = new Performer("Роман");
+           Knight warrior1 = new Knight(100, 10);
+           Barbarian warrior2 = new Barbarian(100, 1, 7, 2);
 
-            Task[] tasks = { new Task(worker1, "Выкопать яму."), new Task(worker2, "Вывести грунт.") };
+            warrior1.TakeDamage(500);
+            warrior2.TakeDamage(250);
 
-            Board schedule = new Board(tasks);
+            Console.Write("Рыцарь: ");
+            warrior1.ShowInfo();
 
-            schedule.ShowAllTasks();
+            Console.Write("Варвар: ");
+            warrior2.ShowInfo();
         }
     }
 
-    class Performer
+    class Warrior
     {
-        public string Name;
+        protected int Health;
+        protected int Armor;
+        protected int Damage;
 
-        public Performer(string name)
+        public Warrior(int haelth, int armor, int damage) 
         {
-            Name = name;
-        }
-    }
-
-    class Board
-    {
-        public Task[] Tasks;
-
-        public Board(Task[] tasks)
-        {
-            Tasks = tasks;
+            Health = haelth;
+            Armor = armor;
+            Damage = damage;
         }
 
-        public void ShowAllTasks()
+        public void TakeDamage(int damage)
         {
-            for (int i = 0; i < Tasks.Length; i++)
-            {
-                Tasks[i].ShowInfo();
-            }
-        }
-    }
-
-    class Task
-    {
-        public Performer Worker;
-        public string Description;
-
-        public Task(Performer worker, string description)
-        {
-            Worker = worker;
-            Description = description;
+            Health -= damage - Armor;
         }
 
         public void ShowInfo()
         {
-            Console.WriteLine($"Ответственный {Worker.Name}\nОписание задачи: {Description}.\n");
+            Console.WriteLine(Health);
+        }
+
+    }
+    class Knight: Warrior
+    {
+        public Knight(int health, int damage) : base(health, 5, damage) { } 
+        public void Pray()
+        {
+            Armor += 2;
         }
     }
+
+    class Barbarian: Warrior
+    {
+        public int AttackSpeed;
+        
+        public Barbarian(int health, int armor, int damage, int attackSpeed) : base(health, armor, damage*attackSpeed)
+        {
+            AttackSpeed = attackSpeed;
+        }
+        public void Shout()
+        { 
+            Armor -= 2;
+            Health += 10;
+        
+        }
+    }
+
 }
