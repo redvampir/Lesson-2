@@ -11,71 +11,59 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            bool isOpen = true;
-            
-            Table[] tables = { new Table(1, 4), new Table(2, 8), new Table(3, 10) };
-            
-            while (isOpen)
-            {
-                Console.WriteLine("Администрирование кафе.\n");
+            Performer worker1 = new Performer("Вемиамин");
+            Performer worker2 = new Performer("Роман");
 
-               for (int i = 0; i < tables.Length; i++)
-                {
-                    tables[i].ShowInfo();
-                }
+            Task[] tasks = { new Task(worker1, "Выкопать яму."), new Task(worker2, "Вывести грунт.") };
 
-               Console.Write("\nВведите номер стола: ");
-                int wishTable = Convert.ToInt32(Console.ReadLine()) - 1;
-                Console.Write("\nВведите количество мест для брони: ");
-                int desiredPlaces = Convert.ToInt32(Console.ReadLine());
+            Board schedule = new Board(tasks);
 
-                bool isReservationComleted = tables[wishTable].Reserve(desiredPlaces);
-                if (isReservationComleted)
-                {
-                    Console.WriteLine("Бронь прошла успешно!");
-                }
-                else
-                {
-                    Console.WriteLine("Бронь не прошла. Недостаточно мест.");
-                }
+            schedule.ShowAllTasks();
+        }
+    }
 
-                Console.ReadKey();
-                Console.Clear();
-            }
+    class Performer
+    {
+        public string Name;
+
+        public Performer(string name)
+        {
+            Name = name;
+        }
+    }
+
+    class Board
+    {
+        public Task[] Tasks;
+
+        public Board(Task[] tasks)
+        {
+            Tasks = tasks;
         }
 
-        class Table
+        public void ShowAllTasks()
         {
-            public int Number;
-            public int MaxPlaces;
-            public int FreePlaces;
-
-            public Table(int number, int maxPlaces) 
+            for (int i = 0; i < Tasks.Length; i++)
             {
-                Number = number;
-                MaxPlaces = maxPlaces;
-                FreePlaces = maxPlaces;
-            }
-
-            public void ShowInfo()
-            {
-                Console.WriteLine($"Стол: {Number}. Свободных мест: {FreePlaces} из {MaxPlaces}.");
-            }
-
-            public bool Reserve(int places)
-            {
-                if (FreePlaces >= places) 
-                { 
-                    FreePlaces -= places;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                Tasks[i].ShowInfo();
             }
         }
     }
 
+    class Task
+    {
+        public Performer Worker;
+        public string Description;
 
+        public Task(Performer worker, string description)
+        {
+            Worker = worker;
+            Description = description;
+        }
+
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Ответственный {Worker.Name}\nОписание задачи: {Description}.\n");
+        }
+    }
 }
