@@ -11,50 +11,45 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            NonPlayerCharacter[] characters =
+            Behaviur[] behaviurs =
             {
-                new NonPlayerCharacter(),
-                new Farmer(),
-                new Knight(),
-                new Child()
+                new Walker(),
+                new Jumper()
             };
 
-            foreach (var character in characters)
+            while (true)
             {
-                character.ShowDescription();
-                Console.WriteLine(new string('-', 40));
+                foreach (var behaviour in behaviurs)
+                {
+                    behaviour.Update();
+                    System.Threading.Thread.Sleep(1000);
+                }
             }
         }
-
+       
     }
 
-    class NonPlayerCharacter
+    class Behaviur
     { 
-        public virtual void ShowDescription()
+    public virtual void Update()
         {
-            Console.WriteLine("Я простой NPC, умею только гулять.");
+
         }
     }
 
-    class Farmer : NonPlayerCharacter
+    class Walker : Behaviur
     {
-        public override void ShowDescription()
+        public override void Update()
         {
-            base.ShowDescription();
-            Console.WriteLine("А ещё я фермер и умею работать на поле.");
+            Console.WriteLine("Иду.");
         }
     }
 
-    class Knight : NonPlayerCharacter
+    class Jumper : Behaviur
     {
-        public override void ShowDescription()
+        public override void Update()
         {
-            Console.WriteLine("Я рыцарь, мое дело только сражения!"); ;
+            Console.WriteLine("Прыгаю.");
         }
-    }
-
-    class Child : NonPlayerCharacter
-    {
-
     }
 }
