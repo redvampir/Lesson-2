@@ -11,41 +11,28 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            Vehicle[] vehicles = { new Car(), new Train() };
-
-            foreach (var vehicle in vehicles)
-            {
-                vehicle.Move();                
-            }
+            User.Identifications = 10;
+            User user1 = new User();
+            User user2 = new User();
+            user1.ShowInfo();
+            user2.ShowInfo();
         }
        
     }
     
-    abstract class Vehicle
+    class User
     {
-        protected float Speed;
+        public static int Identifications;
+        public int Identification;
 
-        public abstract void Move();
-
-        public float GetCurrentSpeed()
+        public User() 
         {
-            return Speed;
+            Identification = ++Identifications;
         }
-    }
 
-    class Car: Vehicle
-    {
-        public override void Move()
+        public void ShowInfo() 
         {
-            Console.WriteLine("Машина едет по асфальту.");
-        }
-    }
-
-    class Train : Vehicle
-    {
-        public override void Move()
-        {
-            Console.WriteLine("Поезд едет по рельсам.");
+            Console.WriteLine(Identification);
         }
     }
 }
