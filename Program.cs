@@ -11,39 +11,25 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            User.Identifications = 10;
-            User user1 = new User();
-            User user2 = new User();
-            user1.ShowInfo();
-            user2.ShowInfo();
+            Console.WriteLine("Привет, мир!");
+            MyClass instance = new MyClass();
+            Console.WriteLine(MyClass.StaticField);
         }
        
     }
     
-    class User
+    class MyClass
     {
-        public static int Identifications;
-        public int Identification;
-        public static int MenHourPrice;
-
-        public User() 
-        {
-            Identification = ++Identifications;
+        public static float StaticField;
+        static MyClass()
+        { 
+            StaticField = 10;
+            Console.WriteLine("Статистический конструктор.");
         }
 
-        public void ShowInfo() 
+        public MyClass() 
         {
-            Console.WriteLine(Identification);
-        }
-
-        public static int GetSalaryPerDay (int workedHours)
-        {
-            return MenHourPrice * workedHours;
-        }
-
-        public int GetSalaryPerMonth(int workedDays) 
-        {
-            return GetSalaryPerDay(8) * workedDays;
+            Console.WriteLine("Обычный конструктор.");
         }
     }
 }
