@@ -11,45 +11,55 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            Behaviur[] behaviurs =
-            {
-                new Walker(),
-                new Jumper()
-            };
-
-            while (true)
-            {
-                foreach (var behaviour in behaviurs)
-                {
-                    behaviour.Update();
-                    System.Threading.Thread.Sleep(1000);
-                }
-            }
+            
         }
        
     }
 
-    class Behaviur
-    { 
-    public virtual void Update()
+    interface IMovable
+    {
+        void Move();
+        void ShowMoveSpeed();
+    }
+
+    interface IBurnable
+    {
+        void Burn();
+    }
+
+    class Vehicle
+    {
+
+    }
+
+    class Car : Vehicle, IMovable, IBurnable 
+    {
+        public void Move() 
+        {
+        
+        }
+
+        public void ShowMoveSpeed()
+        {
+
+        }
+
+        public void Burn()
         {
 
         }
     }
 
-    class Walker : Behaviur
+    class Human: IMovable
     {
-        public override void Update()
+        public void Move()
         {
-            Console.WriteLine("Иду.");
-        }
-    }
 
-    class Jumper : Behaviur
-    {
-        public override void Update()
+        }
+
+        public void ShowMoveSpeed()
         {
-            Console.WriteLine("Прыгаю.");
+
         }
     }
 }
