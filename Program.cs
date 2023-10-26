@@ -11,55 +11,41 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            
+            Vehicle[] vehicles = { new Car(), new Train() };
+
+            foreach (var vehicle in vehicles)
+            {
+                vehicle.Move();                
+            }
         }
        
     }
-
-    interface IMovable
+    
+    abstract class Vehicle
     {
-        void Move();
-        void ShowMoveSpeed();
-    }
+        protected float Speed;
 
-    interface IBurnable
-    {
-        void Burn();
-    }
+        public abstract void Move();
 
-    class Vehicle
-    {
-
-    }
-
-    class Car : Vehicle, IMovable, IBurnable 
-    {
-        public void Move() 
+        public float GetCurrentSpeed()
         {
-        
-        }
-
-        public void ShowMoveSpeed()
-        {
-
-        }
-
-        public void Burn()
-        {
-
+            return Speed;
         }
     }
 
-    class Human: IMovable
+    class Car: Vehicle
     {
-        public void Move()
+        public override void Move()
         {
-
+            Console.WriteLine("Машина едет по асфальту.");
         }
+    }
 
-        public void ShowMoveSpeed()
+    class Train : Vehicle
+    {
+        public override void Move()
         {
-
+            Console.WriteLine("Поезд едет по рельсам.");
         }
     }
 }
