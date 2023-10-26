@@ -24,6 +24,7 @@ namespace Lesson2
     {
         public static int Identifications;
         public int Identification;
+        public static int MenHourPrice;
 
         public User() 
         {
@@ -33,6 +34,16 @@ namespace Lesson2
         public void ShowInfo() 
         {
             Console.WriteLine(Identification);
+        }
+
+        public static int GetSalaryPerDay (int workedHours)
+        {
+            return MenHourPrice * workedHours;
+        }
+
+        public int GetSalaryPerMonth(int workedDays) 
+        {
+            return GetSalaryPerDay(8) * workedDays;
         }
     }
 }
