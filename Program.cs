@@ -11,25 +11,27 @@ namespace Lesson2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Привет, мир!");
-            MyClass instance = new MyClass();
-            Console.WriteLine(MyClass.StaticField);
+            Vector2 position = new Vector2(10);
+
+            Console.WriteLine(position.Y);
         }
        
     }
     
-    class MyClass
+    struct Vector2
     {
-        public static float StaticField;
-        static MyClass()
-        { 
-            StaticField = 10;
-            Console.WriteLine("Статистический конструктор.");
+        public int X, Y;
+
+        public Vector2(int x, int y)
+        {
+            X = x;
+            Y = y;
         }
 
-        public MyClass() 
-        {
-            Console.WriteLine("Обычный конструктор.");
+        public Vector2(int x) : this() 
+        { 
+            X = x; 
         }
+
     }
 }
